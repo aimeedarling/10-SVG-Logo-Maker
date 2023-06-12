@@ -19,6 +19,8 @@ You will see making your logo is very easy. I have included some samples in the 
 
 [The Full-Stack Blog - Professional README Guide](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
 
+Tutoring session with Meg Meyers on 06/11/2023
+
 
 ## License
 
