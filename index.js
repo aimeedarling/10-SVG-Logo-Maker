@@ -19,7 +19,7 @@ inquirer
             type: 'input',
             name: 'font-color',
             message: 'What color font?'
-        }
+        },
         {
             type: 'input',
             name: 'initials',
@@ -27,8 +27,10 @@ inquirer
         }
 
     ])
-    .then ((answers) => {
+    .then ((data) => {
         //use user feedback for whatever"
+        const fileName = 'logo.svg'
+        fs.writeFile('')
     })
     .caths((error) => {
         if(error.isTtyError) {
