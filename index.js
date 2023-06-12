@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path')
+const {Circle, Triangle, Square} = require('./lib/shapes')
+const SVG = require('./lib/svg')
 
 inquirer
     .prompt([
@@ -24,7 +26,12 @@ inquirer
             type: 'input',
             name: 'text',
             message: 'What initials (up to three)?'
-        }
+        },
+        {
+                type: 'input',
+                name: 'fileName',
+                message: 'What would you like to name your logo?'
+        } 
 
     ])
     .then ((data) => {
@@ -44,8 +51,9 @@ inquirer
 
         svg.setShape(shape)
 
-        const fileName = 'logo.svg'
-        fs.writeFile(fileName, svg.render(), (error)=>{
+        const fileName = data.fileName+'.svg'
+        
+        fs.writeFile(path.join('examples',fileName), svg.render(), (error)=>{
             if (error){
                 console.log(error)
             } else {
