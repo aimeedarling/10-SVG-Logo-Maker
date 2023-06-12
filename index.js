@@ -12,30 +12,49 @@ inquirer
         },
         {
             type: 'input',
-            name: 'background-color',
+            name: 'backgroundColor',
             message: 'What color background?'
         },
         {
             type: 'input',
-            name: 'font-color',
+            name: 'fontColor',
             message: 'What color font?'
         },
         {
             type: 'input',
-            name: 'initials',
+            name: 'text',
             message: 'What initials (up to three)?'
         }
 
     ])
     .then ((data) => {
-        //use user feedback for whatever"
-        const fileName = 'logo.svg'
-        fs.writeFile('')
-    })
-    .caths((error) => {
-        if(error.isTtyError) {
-            //prompt couldn't be rendered in the current environment
+        let shape;
+        if(data.shape === 'circle'){
+            shape = new Circle()
+        } else if (data.shape === 'triangle'){
+            shape = new Triangle()
         } else {
-            //something else went wrong
+            shape = new Square()
+        }
+
+        shape.setColor(data.backgroundColor)
+        
+        const svg = new SVG()
+        svg.setText(data.text, data.fontColor)
+
+        svg.setShape(shape)
+
+        const fileName = 'logo.svg'
+        fs.writeFile(fileName, svg.render(), (error)=>{
+            if (error){
+                console.log(error)
+            } else {
+                console.log('Your logo was generated 💅')
+            }
+        })
+    })
+    .catch((error) => {
+        if(error) {
+            console.log(error)
         }
     })
